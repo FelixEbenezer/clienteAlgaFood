@@ -1,12 +1,47 @@
 package com.algaworks.algafood.client.model;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Problem {
 
 	private Integer status;
 	private OffsetDateTime timestamp;
 	private String userMessage;
+	
+	private List<Object> objects = new ArrayList<>();
+	
+	
+	public static class Object {
+		  
+		  private String name;
+		  private String userMessage;
+		  
+		  
+		  
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getUserMessage() {
+			return userMessage;
+		}
+		public void setUserMessage(String userMessage) {
+			this.userMessage = userMessage;
+		}
+		  }
+	
+	public List<Object> getObjects() {
+		return objects;
+	}
+	public void setObjects(List<Object> objects) {
+		this.objects = objects;
+	}
+	
+	
 	public Integer getStatus() {
 		return status;
 	}

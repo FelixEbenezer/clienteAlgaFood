@@ -6,8 +6,10 @@ public class RestauranteResumoModel {
 
 	private Long id;
 	private String nome;
-	private BigDecimal taxaFrete;
+	//private BigDecimal taxaFrete;
 	private CozinhaModel cozinha;
+	private BigDecimal precoFrete; 
+	
 	public Long getId() {
 		return id;
 	}
@@ -20,14 +22,22 @@ public class RestauranteResumoModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	/*
 	public BigDecimal getTaxaFrete() {
 		return taxaFrete;
 	}
 	public void setTaxaFrete(BigDecimal taxaFrete) {
 		this.taxaFrete = taxaFrete;
-	}
+	}*/
 	public CozinhaModel getCozinha() {
 		return cozinha;
+	}
+	public BigDecimal getPrecoFrete() {
+		return precoFrete;
+	}
+	public void setPrecoFrete(BigDecimal precoFrete) {
+		this.precoFrete = precoFrete;
 	}
 	public void setCozinha(CozinhaModel cozinha) {
 		this.cozinha = cozinha;
@@ -36,7 +46,7 @@ public class RestauranteResumoModel {
 	
 	
 	public String toString() {
-		return nome + " - " + taxaFrete;
+		return nome + " - " + precoFrete;
 	}
 	
 }
