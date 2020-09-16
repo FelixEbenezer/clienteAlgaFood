@@ -6,11 +6,11 @@ import org.springframework.web.client.RestTemplate;
 
 import com.algaworks.algafood.client.api.ClientApiException;
 import com.algaworks.algafood.client.api.RestauranteClient;
+import com.algaworks.algafood.client.model.RestauranteResumoModel;
 import com.algaworks.algafood.client.postres.CidadeIdInput;
 import com.algaworks.algafood.client.postres.CozinhaIdInput;
 import com.algaworks.algafood.client.postres.EnderecoInput;
 import com.algaworks.algafood.client.postres.RestauranteInput;
-import com.algaworks.algafood.client.postres.RestauranteModel;
 
 public class AtualizarRestauranteMain {
 
@@ -41,20 +41,22 @@ public class AtualizarRestauranteMain {
       restaurante.setCozinha(cozinha);
       restaurante.setEndereco(endereco);
 
-      RestauranteModel restauranteModel = restauranteClient.atualizar(1L, restaurante);
-
+   //   RestauranteModel restauranteModel = restauranteClient.atualizar(1L, restaurante);
+      restauranteClient.atualizarRafael(7L, restaurante);
+      
+      RestauranteResumoModel restauranteModel = restauranteClient.buscarPor(8L);
+   //   System.out.println(restaurante.getNome()+restaurante.getTaxaFrete());
       System.out.println(restauranteModel);
     } catch (ClientApiException e) {
-      if (e.getProblem() != null) {
-        System.out.println(e.getProblem().getUserMessage());
-        
-        e.getProblem().getObjects().stream()
-          .forEach(p -> System.out.println("- " + p.getUserMessage()));
-        
-      } else {
-        System.out.println("Erro desconhecido");
-        e.printStackTrace();
-      }
+    	if (e.getProblem() != null) {
+    		System.out.println("Status: "+e.getProblem().getStatus());
+    		System.out.println("Timestamp: "+e.getProblem().getTimestamp());
+    		System.out.println("userMessage: "+e.getProblem().getUserMessage());
+    				
+    	} else {
+    		System.out.println("Erro desconhecido");
+    		e.printStackTrace();
+    	}
     }
   }
 }        

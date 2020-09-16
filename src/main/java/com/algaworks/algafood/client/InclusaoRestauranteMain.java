@@ -45,16 +45,14 @@ public class InclusaoRestauranteMain {
 
       System.out.println(restauranteModel);
     } catch (ClientApiException e) {
-      if (e.getProblem() != null) {
-        System.out.println(e.getProblem().getUserMessage());
-        
-        e.getProblem().getObjects().stream()
-          .forEach(p -> System.out.println("- " + p.getUserMessage()));
-        
-      } else {
-        System.out.println("Erro desconhecido");
-        e.printStackTrace();
-      }
+    	if (e.getProblem() != null) {
+    		System.out.println("Status: "+e.getProblem().getStatus());
+    		System.out.println("Timestamp: "+e.getProblem().getTimestamp());
+    		System.out.println("userMessage: "+e.getProblem().getUserMessage());
+    				
+    	} else {
+    		System.out.println("Erro desconhecido");
+    		e.printStackTrace();
+    	}
     }
-  }
-}        
+  }}        

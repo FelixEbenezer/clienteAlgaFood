@@ -2,7 +2,9 @@ package com.algaworks.algafood.client.api;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientResponseException;
@@ -107,6 +109,17 @@ public class RestauranteClient {
 		  } catch (HttpClientErrorException e) {
 		    throw new ClientApiException(e.getMessage(), e);
 		  }
+		}
+	
+	public void atualizarRafael(Long id, RestauranteInput restaurante) {
+		   final String uri = url + RESOURCE_PATH +"/{id}";
+		   Map<String, Long> params = new HashMap<String, Long>();
+		   params.put("id", id);  
+			try {	  
+			    restTemplate.put(uri, restaurante, params);
+			} catch (HttpClientErrorException e) {
+		            throw new ClientApiException(e.getMessage(), e);
+		        }
 		}
 	
 }

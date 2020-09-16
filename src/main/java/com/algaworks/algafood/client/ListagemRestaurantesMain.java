@@ -1,6 +1,4 @@
 package com.algaworks.algafood.client;
-import java.math.BigDecimal;
-
 import org.springframework.web.client.RestTemplate;
 
 import com.algaworks.algafood.client.api.ClientApiException;
@@ -11,7 +9,7 @@ public class ListagemRestaurantesMain {
 
 	public static void main(String[] args) {
 		try {
-			RestauranteResumoModel resTa = new RestauranteResumoModel();
+		//	RestauranteResumoModel resTa = new RestauranteResumoModel();
 			RestTemplate restTemplate = new RestTemplate();
 			
 			RestauranteClient restauranteClient = new RestauranteClient(
@@ -19,10 +17,10 @@ public class ListagemRestaurantesMain {
 			
 			restauranteClient. listar().stream()
 				.forEach(restaurante -> System.out.println(restaurante));
-/*			System.out.println("************************************");
-			RestauranteResumoModel res = restauranteClient.buscarPor(1L);
-			System.out.println(res);
 			System.out.println("************************************");
+//			RestauranteResumoModel res = restauranteClient.buscarPor(1L);
+	//		System.out.println(res);
+/*			System.out.println("************************************");
 		//	restauranteClient.removerRes(7L);
 			System.out.println("Item deletado com sucesso");
 			System.out.println("LISTAR TAXA FRETE DO RESTAURANTE");
@@ -30,8 +28,10 @@ public class ListagemRestaurantesMain {
 			System.out.println(txFre);*/
 		} catch (ClientApiException e) {
 			if (e.getProblem() != null) {
-				System.out.println(e.getProblem());
-	//			System.out.println(e.getProblem().getUserMessage());
+				System.out.println("Status: "+e.getProblem().getStatus());
+				System.out.println("Timestamp: "+e.getProblem().getTimestamp());
+				System.out.println("userMessage: "+e.getProblem().getUserMessage());
+						
 			} else {
 				System.out.println("Erro desconhecido");
 				e.printStackTrace();
